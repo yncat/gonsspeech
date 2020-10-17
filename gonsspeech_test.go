@@ -51,6 +51,6 @@ func TestNsSpeech_IsSpeaking(t *testing.T) {
 }
 
 func TestNsSpeech_IsSpeaking_Error(t *testing.T) {
-	speaking, err := NsSpeechIsSpeaking()
+	_, err := NsSpeechIsSpeaking()
 	assert.EqualError(t, err, "NsSpeechSynthesizer interface has not been initialized.")
 }
