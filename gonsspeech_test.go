@@ -17,8 +17,8 @@ func TestNsSpeech_Init(t *testing.T) {
 func TestNsSpeech_Speak(t *testing.T) {
 	err := NsSpeechInit()
 	assert.NoError(t, err, "NsSpeechInit")
-	err := NsSpeechSpeak("test")
+	err = NsSpeechSpeak("test")
 	assert.NoError(t, err, "NsSpeechSpeak")
-	time.Sleep(2)
+	time.Sleep(2 * time.Second)
 	NsSpeechFree()
 }
