@@ -6,7 +6,7 @@ NSSpeechSynthesizer *speechSynth = NULL;
 int NsSpeechInit(){
 if(speechSynth) return 0;
 speechSynth=[[NSSpeechSynthesizer alloc] initWithVoice:nil];
-[speechSynth setVoice:@"com.apple.speech.synthesis.voice.kyoko"];
+[speechSynth setVoice:[speechSynth defaultVoice]];
 [speechSynth setRate:240];
 [speechSynth setVolume:0.9];
 return 1;
@@ -30,6 +30,13 @@ int NsSpeechStop(){
 if(!speechSynth) return 0;
 [speechSynth stopSpeaking];
     return 1;
+}
+
+int NsSpeechSetRate(float rate){
+if(!speechSynth) return 0;
+if(rate<=0) return -1;
+[speechSynth setRate:rate];
+return 1;
 }
 
 int NsSpeechIsSpeaking(){
