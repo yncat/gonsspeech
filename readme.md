@@ -1,6 +1,9 @@
-﻿# gonsspeech (WIP)
+﻿# gonsspeech
 
-I want to make this a go binding.
+A simple golang binding for OSX NsSpeechSynthesizer.
 
-I've just managed to make Kyoko speak from Golang. Other voices, bindings are not implemented yet. Yay! WIPWIPWIPWIPWIP!
+# TODO
 
+- Make voice customisable
+- Direct compilation without dynamic library
+- go doc
