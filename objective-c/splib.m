@@ -26,6 +26,12 @@ usleep(5000);
     return 1;
 }
 
+int NsSpeechStop(){
+if(!speechSynth) return 0;
+[speechSynth stopSpeaking];
+    return 1;
+}
+
 int NsSpeechIsSpeaking(){
 if(!speechSynth) return 0;
 return [speechSynth isSpeaking] == YES ? 1 : 2;
