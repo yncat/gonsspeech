@@ -4,5 +4,6 @@
 int NsSpeechInit();
 int NsSpeechFree();
 int NsSpeechSpeak(char *str);
+int NsSpeechStop();
 int NsSpeechIsSpeaking();
 #endif
