@@ -5,8 +5,7 @@ NSSpeechSynthesizer *speechSynth = NULL;
 
 int NsSpeechInit(){
 if(speechSynth) return 0;
-speechSynth=[[NSSpeechSynthesizer alloc] initWithVoice:nil];
-[speechSynth setVoice:[speechSynth defaultVoice]];
+speechSynth=[[NSSpeechSynthesizer alloc] init];
 [speechSynth setRate:240];
 [speechSynth setVolume:0.9];
 return 1;
