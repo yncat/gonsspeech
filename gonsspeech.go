@@ -25,6 +25,14 @@ func NsSpeechSpeak(text string) error {
 	return nil
 }
 
+func NsSpeechStop() error {
+	ret := C.NsSpeechStop()
+	if ret == 0 {
+		return errors.New("NsSpeechSynthesizer interface has not been initialized.")
+	}
+	return nil
+}
+
 func NsSpeechIsSpeaking() (bool, error) {
 	switch C.NsSpeechIsSpeaking() {
 	case 0:
