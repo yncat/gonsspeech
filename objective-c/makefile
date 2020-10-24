@@ -1,7 +1,7 @@
 client: libnsspeech.dylib
 	clang spclient.c libnsspeech.dylib -o client
 
-libnsspeech.dylib:
+libnsspeech.dylib: splib.m
 	clang -dynamiclib splib.m -framework AppKit -o libnsspeech.dylib
 
 clean:
