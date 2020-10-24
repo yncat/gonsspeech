@@ -40,10 +40,11 @@ func TestNsSpeech_IsSpeaking(t *testing.T) {
 	assert.NoError(t, err, "NsSpeechIsSpeaking")
 	assert.True(t, speaking, "NsSpeechIsSpeaking")
 
-	err = NsSpeechSpeak("")
+	err = NsSpeechStop()
 	time.Sleep(time.Second)
+	assert.NoError(t, err, "NsSpeechStop")
 	speaking, err = NsSpeechIsSpeaking()
-	// TODO: this returns true for some reason. I need to find a proper way of stopping speech.
+	// TODO: check if speech stops
 	assert.NoError(t, err, "NsSpeechIsSpeaking")
 	//assert.False(t,speaking,"NsSpeechIsSpeaking")
 
