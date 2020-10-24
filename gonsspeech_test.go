@@ -36,7 +36,7 @@ func TestNsSpeech_SetRate(t *testing.T) {
 	assert.NoError(t, err, "NsSpeechSpeak")
 	time.Sleep(2 * time.Second)
 
-err := NsSpeechSetRate(480)
+err = NsSpeechSetRate(480)
 	assert.NoError(t, err, "NsSpeechSetRate")
 	err = NsSpeechSpeak("rate 480")
 	assert.NoError(t, err, "NsSpeechSpeak")
