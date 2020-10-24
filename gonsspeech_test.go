@@ -45,7 +45,7 @@ func TestNsSpeech_IsSpeaking(t *testing.T) {
 	assert.NoError(t, err, "NsSpeechStop")
 	speaking, err = NsSpeechIsSpeaking()
 	assert.NoError(t, err, "NsSpeechIsSpeaking")
-	assert.False(t,speaking,"NsSpeechIsSpeaking")
+	assert.False(t, speaking, "NsSpeechIsSpeaking")
 
 	NsSpeechFree()
 }

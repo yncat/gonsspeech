@@ -33,6 +33,17 @@ func NsSpeechStop() error {
 	return nil
 }
 
+func NsSpeechSetRate(rate float64) error {
+	ret := C.NsSpeechSetRate(C.float(rate))
+	if ret == 0 {
+		return errors.New("NsSpeechSynthesizer interface has not been initialized.")
+	}
+	if ret == -1 {
+		return errors.New("rate value is out of range")
+	}
+	return nil
+}
+
 func NsSpeechIsSpeaking() (bool, error) {
 	switch C.NsSpeechIsSpeaking() {
 	case 0:
