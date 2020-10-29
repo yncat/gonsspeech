@@ -3,7 +3,7 @@ package gonsspeech
 /*
 #cgo CFLAGS: -x objective-c
 
-#cgo LDFLAGS: -framework Foundation
+#cgo LDFLAGS: -framework AppKit
 #import <Foundation/Foundation.h>
 #import <AppKit/AppKit.h>
 
