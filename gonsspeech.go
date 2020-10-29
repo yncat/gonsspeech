@@ -1,8 +1,8 @@
 package gonsspeech
 
 /*
-#cgo LDFLAGS: -L./objective-c -lnsspeech
-#include "objective-c/splib.h"
+//#cgo LDFLAGS: -L./objective-c -lnsspeech
+#include "objective-c/splib.m"
 */
 import "C"
 import (
