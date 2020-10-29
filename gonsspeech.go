@@ -2,7 +2,8 @@ package gonsspeech
 
 /*
 //#cgo LDFLAGS: -L./objective-c -lnsspeech
-#include "objective-c/splib.m"
+#CGO CFLAGS: -x objective-c
+#include "${SRCDIR}/objective-c/splib.m"
 */
 import "C"
 import (
