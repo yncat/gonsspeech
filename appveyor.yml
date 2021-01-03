@@ -1,0 +1,6 @@
+image: macOS
+build_script:
+  - sh: go build -v
+
+
+
