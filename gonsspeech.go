@@ -44,6 +44,23 @@ if(rate<=0) return -2;
 return 1;
 }
 
+float NsSpeechGetRate(){
+if(!speechSynth) return -1;
+return [speechSynth rate];
+}
+
+int NsSpeechSetVolume(float volume){
+if(!speechSynth) return -1;
+if(volume<0 || volume>1) return -2;
+[speechSynth setVolume:volume];
+return 1;
+}
+
+float NsSpeechGetVolume(){
+if(!speechSynth) return -1;
+return [speechSynth volume];
+}
+
 int NsSpeechIsSpeaking(){
 if(!speechSynth) return -1;
 return [speechSynth isSpeaking] == YES ? 1 : 0;
@@ -89,6 +106,33 @@ func NsSpeechSetRate(rate float64) error {
 		return errors.New("rate value is out of range")
 	}
 	return nil
+}
+
+func NsSpeechGetRate() (float64, error) {
+	ret := C.NsSpeechGetRate()
+	if ret == -1 {
+		return 0.0, errors.New("NsSpeechSynthesizer interface has not been initialized.")
+	}
+	return float64(ret), nil
+}
+
+func NsSpeechSetVolume(volume float64) error {
+	ret := C.NsSpeechSetVolume(C.float(volume))
+	if ret == -1 {
+		return errors.New("NsSpeechSynthesizer interface has not been initialized.")
+	}
+	if ret == -2 {
+		return errors.New("volume value is out of range")
+	}
+	return nil
+}
+
+func NsSpeechGetVolume() (float64, error) {
+	ret := C.NsSpeechGetVolume()
+	if ret == -1 {
+		return 0.0, errors.New("NsSpeechSynthesizer interface has not been initialized.")
+	}
+	return float64(ret), nil
 }
 
 func NsSpeechIsSpeaking() (bool, error) {

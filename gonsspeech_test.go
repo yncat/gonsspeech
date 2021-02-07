@@ -36,7 +36,7 @@ func TestNsSpeech_SetRate(t *testing.T) {
 	assert.NoError(t, err, "NsSpeechSpeak")
 	time.Sleep(2 * time.Second)
 
-err = NsSpeechSetRate(480)
+	err = NsSpeechSetRate(480)
 	assert.NoError(t, err, "NsSpeechSetRate")
 	err = NsSpeechSpeak("rate 480")
 	assert.NoError(t, err, "NsSpeechSpeak")
@@ -55,6 +55,66 @@ func TestNsSpeech_SetRate_Error(t *testing.T) {
 	err = NsSpeechSetRate(-1)
 	assert.EqualError(t, err, "rate value is out of range")
 	NsSpeechFree()
+}
+
+func TestNsSpeech_GetRate(t *testing.T) {
+	err := NsSpeechInit()
+	assert.NoError(t, err, "NsSpeechInit")
+
+	rate, err := NsSpeechGetRate()
+	assert.NoError(t, err, "NsSpeechGetRate")
+	assert.Equal(t, float64(240), rate)
+	NsSpeechFree()
+}
+
+func TestNsSpeech_GetRate_Error(t *testing.T) {
+	_, err := NsSpeechGetRate()
+	assert.EqualError(t, err, "NsSpeechSynthesizer interface has not been initialized.")
+}
+
+func TestNsSpeech_SetVolume(t *testing.T) {
+	err := NsSpeechInit()
+	assert.NoError(t, err, "NsSpeechInit")
+
+	err = NsSpeechSpeak("volume 1.0 default")
+	assert.NoError(t, err, "NsSpeechSpeak")
+	time.Sleep(2 * time.Second)
+
+	err = NsSpeechSetVolume(0.3)
+	assert.NoError(t, err, "NsSpeechSetVolume")
+	err = NsSpeechSpeak("volume 0.3")
+	assert.NoError(t, err, "NsSpeechSpeak")
+	time.Sleep(2 * time.Second)
+
+	NsSpeechFree()
+}
+
+func TestNsSpeech_SetVolume_Error(t *testing.T) {
+	err := NsSpeechSetVolume(0.5)
+	assert.EqualError(t, err, "NsSpeechSynthesizer interface has not been initialized.")
+	err = NsSpeechInit()
+	assert.NoError(t, err, "NsSpeechInit")
+
+	err = NsSpeechSetVolume(-0.01)
+	assert.EqualError(t, err, "volume value is out of range")
+	err = NsSpeechSetVolume(1.01)
+	assert.EqualError(t, err, "volume value is out of range")
+	NsSpeechFree()
+}
+
+func TestNsSpeech_GetVolume(t *testing.T) {
+	err := NsSpeechInit()
+	assert.NoError(t, err, "NsSpeechInit")
+
+	volume, err := NsSpeechGetVolume()
+	assert.NoError(t, err, "NsSpeechGetVolume")
+	assert.Equal(t, 1.0, volume)
+	NsSpeechFree()
+}
+
+func TestNsSpeech_GetVolume_Error(t *testing.T) {
+	_, err := NsSpeechGetVolume()
+	assert.EqualError(t, err, "NsSpeechSynthesizer interface has not been initialized.")
 }
 
 func TestNsSpeech_IsSpeaking(t *testing.T) {
