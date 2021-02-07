@@ -63,12 +63,12 @@ func TestNsSpeech_GetRate(t *testing.T) {
 
 	rate, err := NsSpeechGetRate()
 	assert.NoError(t, err, "NsSpeechGetRate")
-	assert.Equal(t, 240, rate)
+	assert.Equal(t, float64(240), rate)
 	NsSpeechFree()
 }
 
 func TestNsSpeech_GetRate_Error(t *testing.T) {
-	err := NsSpeechGetRate()
+	_, err := NsSpeechGetRate()
 	assert.EqualError(t, err, "NsSpeechSynthesizer interface has not been initialized.")
 }
 
@@ -108,12 +108,12 @@ func TestNsSpeech_GetVolume(t *testing.T) {
 
 	volume, err := NsSpeechGetVolume()
 	assert.NoError(t, err, "NsSpeechGetVolume")
-	assert.Equal(t, 1.0, rate)
+	assert.Equal(t, 1.0, volume)
 	NsSpeechFree()
 }
 
 func TestNsSpeech_GetVolume_Error(t *testing.T) {
-	err := NsSpeechGetVolume()
+	_, err := NsSpeechGetVolume()
 	assert.EqualError(t, err, "NsSpeechSynthesizer interface has not been initialized.")
 }
 
