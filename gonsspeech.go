@@ -61,6 +61,20 @@ if(!speechSynth) return -1;
 return [speechSynth volume];
 }
 
+char* NsSpeechGetAvailableVoices(){
+if(!speechSynth) NULL;
+// It's troublesome to make a list of voices as an array and convert it into a go slice. Instead, I'm joining each entry by a comma.
+NSArray voices = [speechSynth availableVoices]
+NSMutableString *mstr = [NSMutableString string];
+for(int i=0;i<voices.count;i++){
+[mstr appendString:voices[i]];
+if(i!=voices.count-1){
+[mstr appendString:@","]
+}
+}
+return [mstr UTF8String]
+}
+
 int NsSpeechIsSpeaking(){
 if(!speechSynth) return -1;
 return [speechSynth isSpeaking] == YES ? 1 : 0;
@@ -133,6 +147,15 @@ func NsSpeechGetVolume() (float64, error) {
 		return 0.0, errors.New("NsSpeechSynthesizer interface has not been initialized.")
 	}
 	return float64(ret), nil
+}
+
+func NsSpeechGetAvailableVoices() (string, error) {
+	ret := C.NsSpeechGetVolume()
+	if ret == 0 {
+		return "", errors.New("NsSpeechSynthesizer interface has not been initialized.")
+	}
+	str := C.GoString(ret)
+	return ret, nil
 }
 
 func NsSpeechIsSpeaking() (bool, error) {
